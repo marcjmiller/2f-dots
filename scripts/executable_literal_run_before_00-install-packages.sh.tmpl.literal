@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+SCRIPT_PATH=$(realpath $0)
+DIR_PATH=$(dirname $SCRIPT_PATH)
+
+{{ if eq .chezmoi.os "linux" -}}
+source "$DIR_PATH"/executable_linux-utils.sh
+{{ else if eq .chezmoi.os "darwin" -}}
+source "$DIR_PATH"/executable_darwin-utils.sh
+{{ end -}}
+
+source "$DIR_PATH"/executable_common-utils.sh
+
+function main {
+  PACKAGE_LIST=( zsh )
+  for PACKAGE in ${PACKAGE_LIST[@]}; do
+    if [[ $(isInstalled "$PACKAGE") -eq 0 ]]; then
+      installPkg "$PACKAGE"
+    else
+      echo "$PACKAGE is already installed"
+    fi
+  done
+}
+
+function aptInstall {
+  sudo sh -c "DEBIAN_FRONTEND=noninteractive apt-get -qqy install $1" < /dev/null > /dev/null
+}
+
+function isInstalled {
+  command -v "$@" | wc -l 
+}
+
+main ${@}
+
