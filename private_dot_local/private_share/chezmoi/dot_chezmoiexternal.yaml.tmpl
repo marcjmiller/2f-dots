@@ -1,0 +1,71 @@
+#####################
+##  Oh My Zsh
+#####################
+.omz:
+  type: archive
+  url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
+  exact: true
+  stripComponents: 1
+  refreshPeriod: 1h
+
+.omz/custom/plugins/zsh-syntax-highlighting:
+  type: archive
+  url: https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz
+  exact: true
+  stripComponents: 1
+  refreshPeriod: 1h
+
+.omz/custom/plugins/zsh-completions:
+  type: archive
+  url: https://github.com/zsh-users/zsh-completions/archive/master.tar.gz
+  exact: true
+  stripComponents: 1
+  refreshPeriod: 1h
+
+.omz/custom/plugins/zsh-autosuggestions:
+  type: archive
+  url: https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz
+  exact: true
+  stripComponents: 1
+  refreshPeriod: 1h
+
+.omz/custom/themes/powerlevel10k:
+    type: archive
+    url: https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz
+    exact: true
+    stripComponents: 1
+
+#####################
+##  Fonts
+#####################
+{{ $nerdFontsVersion := "2.2.2" -}}
+{{ $nerdFontsDlURL := "https://github.com/ryanoasis/nerd-fonts/releases/download" -}}
+{{ $fontInstallDir := ".local/share/fonts" -}}
+{{ if eq .chezmoi.os "darwin" -}}
+  {{ $fontInstallDir = "Library/Fonts" -}}
+{{ end -}}
+
+{{ $fontInstallDir }}/CascadiaCode:                # 68MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/CascadiaCode.zip
+{{ $fontInstallDir }}/FantasqueSansMono:           # 9.8MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FantasqueSansMono.zip
+{{ $fontInstallDir }}/FiraCode:                    # 16.4MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FiraCode.zip
+{{ $fontInstallDir }}/Hasklig:                     # 75.7MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Hasklig.zip
+{{ $fontInstallDir }}/Iosevka:                     # 464MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Iosevka.zip
+{{ $fontInstallDir }}/VictorMono:                  # 48.4MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/VictorMono.zip

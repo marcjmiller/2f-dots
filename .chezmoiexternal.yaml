@@ -38,40 +38,27 @@
 #####################
 ##  Fonts
 #####################
-{{ $nerdFontsVersion := "2.2.2" -}}
-{{ $nerdFontsDlURL := "https://github.com/ryanoasis/nerd-fonts/releases/download" -}}
-{{ $fontInstallDir := ".local/share/fonts" -}}
-{{ if eq .chezmoi.os "darwin" -}}
-  {{ $fontInstallDir = "Library/Fonts" -}}
-{{ end -}}
-
-{{ $fontInstallDir }}/CascadiaCode:                # 68MB
+.local/share/fonts/CascadiaCode:                # 68MB
   type: archive
   format: zip
-  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/CascadiaCode.zip
-  exact: true
-{{ $fontInstallDir }}/FantasqueSansMono:           # 9.8MB
+  url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/CascadiaCode.zip
+.local/share/fonts/FantasqueSansMono:           # 9.8MB
   type: archive
   format: zip
-  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FantasqueSansMono.zip
-  exact: true
-{{ $fontInstallDir }}/FiraCode:                    # 16.4MB
+  url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/FantasqueSansMono.zip
+.local/share/fonts/FiraCode:                    # 16.4MB
   type: archive
   format: zip
-  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FiraCode.zip
-  exact: true
-{{ $fontInstallDir }}/Hasklig:                     # 75.7MB
+  url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/FiraCode.zip
+.local/share/fonts/Hasklig:                     # 75.7MB
   type: archive
   format: zip
-  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Hasklig.zip
-  exact: true
-{{ $fontInstallDir }}/Iosevka:                     # 464MB
+  url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Hasklig.zip
+.local/share/fonts/Iosevka:                     # 464MB
   type: archive
   format: zip
-  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Iosevka.zip
-  exact: true
-{{ $fontInstallDir }}/VictorMono:                  # 48.4MB
+  url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Iosevka.zip
+.local/share/fonts/VictorMono:                  # 48.4MB
   type: archive
   format: zip
-  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/VictorMono.zip
-  exact: true
+  url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/VictorMono.zip
