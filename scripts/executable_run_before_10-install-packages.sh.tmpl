@@ -4,12 +4,12 @@ SCRIPT_PATH=$(realpath $0)
 DIR_PATH=$(dirname $SCRIPT_PATH)
 
 {{ if eq .chezmoi.os "linux" -}}
-source "$DIR_PATH"/executable_linux-utils.sh
+source "$DIR_PATH"/linux-utils.sh
 {{ else if eq .chezmoi.os "darwin" -}}
-source "$DIR_PATH"/executable_darwin-utils.sh
+source "$DIR_PATH"/darwin-utils.sh
 {{ end -}}
 
-source "$DIR_PATH"/executable_common-utils.sh
+source "$DIR_PATH"/common-utils.sh
 
 function main {
   PACKAGE_LIST=( zsh )
