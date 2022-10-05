@@ -5,9 +5,11 @@ function main {
 }
 
 function installPkg {
-  if [[ "{{ .chezmoi.osRelease.idLike }}" ~= "debian" ]]; then
-    sudo sh -c "DEBIAN_FRONTEND=noninteractive apt-get -qqy install $1" < /dev/null > /dev/null
-  fi
+  {{ with .chezmoi.osRelease.idLike -}}
+    {{- if . | regexMatch "debian" -}}
+      sudo sh -c "DEBIAN_FRONTEND=noninteractive apt-get -qqy install $1" < /dev/null > /dev/null
+    {{- end -}}
+  {{ end }}
 }
 
 main "${@}"
