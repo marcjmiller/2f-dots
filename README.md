@@ -6,4 +6,5 @@
 
 ### Getting started
 ```
-chezmoi init https://code.il2.gamewarden.io/2f-marc-miller/dots.git
+chezmoi init https://code.il2.gamewarden.io/gamewarden/dotfiles.git
+```
