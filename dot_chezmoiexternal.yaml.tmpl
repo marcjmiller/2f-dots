@@ -1,40 +1,40 @@
 #####################
 ##  Oh My Zsh
 #####################
-.oh-my-zsh:
+.omz:
   type: archive
   url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: 24h
+  refreshPeriod: 1h
 
-.oh-my-zsh/custom/plugins/zsh-syntax-highlighting:
+.omz/custom/plugins/zsh-syntax-highlighting:
   type: archive
   url: https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: 24h
+  refreshPeriod: 1h
 
-.oh-my-zsh/custom/plugins/zsh-completions:
+.omz/custom/plugins/zsh-completions:
   type: archive
   url: https://github.com/zsh-users/zsh-completions/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: 24h
+  refreshPeriod: 1h
 
-.oh-my-zsh/custom/plugins/zsh-autosuggestions:
+.omz/custom/plugins/zsh-autosuggestions:
   type: archive
   url: https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: 24h
+  refreshPeriod: 1h
 
-.oh-my-zsh/custom/themes/powerlevel10k:
+.omz/custom/themes/powerlevel10k:
     type: archive
     url: https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz
     exact: true
     stripComponents: 1
-    refreshPeriod: 24h
+    refreshPeriod: 1h
 
 #####################
 ##  Fonts
@@ -51,11 +51,11 @@
 #   format: zip
 #   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/CascadiaCode.zip
 #   exact: true
-# {{ $fontInstallDir }}/FantasqueSansMono:           # 9.8MB
-#   type: archive
-#   format: zip
-#   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FantasqueSansMono.zip
-#   exact: true
+{{ $fontInstallDir }}/FantasqueSansMono:           # 9.8MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FantasqueSansMono.zip
+  exact: true
 {{ $fontInstallDir }}/FiraCode:                    # 16.4MB
   type: archive
   format: zip
@@ -71,8 +71,8 @@
 #   format: zip
 #   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Iosevka.zip
 #   exact: true
-# {{ $fontInstallDir }}/VictorMono:                  # 48.4MB
-#   type: archive
-#   format: zip
-#   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/VictorMono.zip
-#   exact: true
+{{ $fontInstallDir }}/VictorMono:                  # 48.4MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/VictorMono.zip
+  exact: true
