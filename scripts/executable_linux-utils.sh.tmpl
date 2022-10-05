@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+function main {
+  echo "  Adding {{ .chezmoi.os }} utils"
+}
+
+function installPkg {
+  if [[ "{{ .chezmoi.osRelease.idLike }}" ~= "debian" ]]; then
+    sudo sh -c "DEBIAN_FRONTEND=noninteractive apt-get -qqy install $1" < /dev/null > /dev/null
+  fi
+}
+
+main "${@}"
