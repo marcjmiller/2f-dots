@@ -14,6 +14,9 @@ source "$DIR_PATH"/common-utils.sh
 
 function main {
   install_packages
+  if [[ $(is_installed kitty) -eq 0  ]]; then
+    install_kitty
+  fi
   if [[ $(is_installed nix-env) -eq 0  ]]; then
     install_nix
   fi
@@ -53,6 +56,17 @@ function install_nix_packages {
     else
       echo "  {{ $v.name }} is already installed, skipping"
     fi
+  {{ end }}
+}
+
+function install_kitty {
+  curl -sL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  {{ if eq .chezmoi.os "linux" }}
+    ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+    cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+    cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+    sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+    sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
   {{ end }}
 }
 

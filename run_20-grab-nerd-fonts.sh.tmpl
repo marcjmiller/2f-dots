@@ -2,10 +2,10 @@
 
 DIR_PATH=$HOME/.local/share/chezmoi
 
-NERD_FONTS_BASE_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2
-NERD_FONTS=({{range $v := .NERD_FONTS }}{{ $v }} {{ end }})
+{{ $nerdFonts := .NERD_FONTS }}
 FONT_INSTALL_DIR={{ if eq .chezmoi.os "linux" }}"$HOME/.local/share/fonts"{{ else if eq .chezmoi.os "darwin" }}"$HOME/Library/Fonts"{{ end }}
 INSTALLED_FONTS=0
+NERD_FONTS_BASE_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2
 
 function main {
   echo "Adding fonts"
@@ -16,15 +16,21 @@ function main {
 }
 
 function download_fonts {
-  for FONT in ${NERD_FONTS[@]}; do
-    if [[ ! -d "$FONT_INSTALL_DIR/$FONT" ]]; then
-      if [[ -n "/tmp/$FONT.zip" ]]; then
-        curl -fsSL "$NERD_FONTS_BASE_URL/$FONT.zip" -o "/tmp/$FONT.zip"
+  if [[ ! -d "$FONT_INSTALL_DIR" ]]; then
+    mkdir -p "$FONT_INSTALL_DIR"
+  fi
+
+  {{range $font := $nerdFonts }}
+    if [[ ! -d "$FONT_INSTALL_DIR/{{ $font }}" ]]; then
+      if [[ -n "/tmp/{{ $font }}.zip" ]]; then
+        echo "  downloading {{ $font }}"
+        curl -fsSL "$NERD_FONTS_BASE_URL/{{ $font }}.zip" -o "/tmp/{{ $font }}.zip"
       fi
-      extract_font $FONT
+      extract_font {{ $font }}
+    else
+      echo "  {{ $font }} is already installed, skipping"
     fi
-    echo "  $FONT is already installed, skipping"
-  done
+  {{ end }}
 }
 
 function extract_font {
@@ -37,7 +43,7 @@ function extract_font {
 
 function refresh_fonts {
   if [[ $INSTALLED_FONTS -gt 0 ]]; then
-    fc-cache -f -v
+    fc-cache -f -v &> /dev/null
   fi
 }
 
