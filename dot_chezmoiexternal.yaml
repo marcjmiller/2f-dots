@@ -34,27 +34,28 @@
     url: https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz
     exact: true
     stripComponents: 1
+    refreshPeriod: 24h
 
 #####################
 ##  Fonts
 #####################
-# {{ $nerdFontsVersion := "2.2.2" -}}
-# {{ $nerdFontsDlURL := "https://github.com/ryanoasis/nerd-fonts/releases/download" -}}
-# {{ $fontInstallDir := ".local/share/fonts" -}}
-# {{ if eq .chezmoi.os "darwin" -}}
-#   {{ $fontInstallDir = "Library/Fonts" -}}
-# {{ end -}}
+{{ $nerdFontsVersion := "2.2.2" -}}
+{{ $nerdFontsDlURL := "https://github.com/ryanoasis/nerd-fonts/releases/download" -}}
+{{ $fontInstallDir := ".local/share/fonts" -}}
+{{ if eq .chezmoi.os "darwin" -}}
+  {{ $fontInstallDir = "Library/Fonts" -}}
+{{ end -}}
 
 # {{ $fontInstallDir }}/CascadiaCode:                # 68MB
 #   type: archive
 #   format: zip
 #   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/CascadiaCode.zip
 #   exact: true
-# {{ $fontInstallDir }}/FantasqueSansMono:           # 9.8MB
-#   type: archive
-#   format: zip
-#   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FantasqueSansMono.zip
-#   exact: true
+{{ $fontInstallDir }}/FantasqueSansMono:           # 9.8MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FantasqueSansMono.zip
+  exact: true
 # {{ $fontInstallDir }}/FiraCode:                    # 16.4MB
 #   type: archive
 #   format: zip

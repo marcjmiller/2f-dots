@@ -22,13 +22,5 @@ function main {
   done
 }
 
-function aptInstall {
-  sudo sh -c "DEBIAN_FRONTEND=noninteractive apt-get -qqy install $1" < /dev/null > /dev/null
-}
-
-function isInstalled {
-  command -v "$@" | wc -l 
-}
-
 main ${@}
 
