@@ -34,7 +34,6 @@
     url: https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz
     exact: true
     stripComponents: 1
-    refreshPeriod: 1h
 
 #####################
 ##  Fonts
@@ -46,11 +45,11 @@
   {{ $fontInstallDir = "Library/Fonts" -}}
 {{ end -}}
 
-# {{ $fontInstallDir }}/CascadiaCode:                # 68MB
-#   type: archive
-#   format: zip
-#   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/CascadiaCode.zip
-#   exact: true
+{{ $fontInstallDir }}/CascadiaCode:                # 68MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/CascadiaCode.zip
+  exact: true
 {{ $fontInstallDir }}/FantasqueSansMono:           # 9.8MB
   type: archive
   format: zip
@@ -61,16 +60,16 @@
   format: zip
   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/FiraCode.zip
   exact: true
-# {{ $fontInstallDir }}/Hasklig:                     # 75.7MB
-#   type: archive
-#   format: zip
-#   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Hasklig.zip
-#   exact: true
-# {{ $fontInstallDir }}/Iosevka:                     # 464MB
-#   type: archive
-#   format: zip
-#   url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Iosevka.zip
-#   exact: true
+{{ $fontInstallDir }}/Hasklig:                     # 75.7MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Hasklig.zip
+  exact: true
+{{ $fontInstallDir }}/Iosevka:                     # 464MB
+  type: archive
+  format: zip
+  url: {{ $nerdFontsDlURL }}/v{{ $nerdFontsVersion }}/Iosevka.zip
+  exact: true
 {{ $fontInstallDir }}/VictorMono:                  # 48.4MB
   type: archive
   format: zip
