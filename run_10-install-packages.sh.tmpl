@@ -2,24 +2,58 @@
 
 DIR_PATH=$HOME/.local/share/chezmoi
 
+{{ $packages := .APT_PACKAGES }}
 {{ if eq .chezmoi.os "linux" -}}
 source "$DIR_PATH"/linux-utils.sh
-{{ end -}}
-{{ if eq .chezmoi.os "darwin" -}}
+{{ else if eq .chezmoi.os "darwin" -}}
 source "$DIR_PATH"/darwin-utils.sh
+{{ $packages = .BREW_PACKAGES }}
 {{ end -}}
 
 source "$DIR_PATH"/common-utils.sh
 
 function main {
-  PACKAGE_LIST=( zsh )
-  for PACKAGE in ${PACKAGE_LIST[@]}; do
-    if [[ $(isInstalled "$PACKAGE") -eq 0 ]]; then
-      installPkg "$PACKAGE"
+  install_packages
+  if [[ $(is_installed nix-env) -eq 0  ]]; then
+    install_nix
+  fi
+  install_nix_packages
+}
+
+function install_packages {
+  echo "Installing packages"
+  {{range $v := $packages }}
+    {{ $command := "" }}
+    {{- if hasKey $v "command" -}}
+      {{- $command = $v.command -}}
+    {{- else -}}
+      {{- $command = $v.name -}}
+    {{- end -}}
+    if [[ $(is_installed {{ $command }}) -eq 0 ]]; then
+      echo "  Installing {{ $v.name }}"
+      install_package {{ $v.name }}
     else
-      echo "    $PACKAGE is already installed"
+      echo "  {{ $v.name }} is already installed, skipping"
     fi
-  done
+  {{ end }}
+}
+
+function install_nix_packages {
+  echo "Installing nix packages"
+  {{range $v := .NIX_PACKAGES }}
+    {{ $command := "" }}
+    {{- if hasKey $v "command" -}}
+      {{- $command = $v.command -}}
+    {{- else -}}
+      {{- $command = $v.name -}}
+    {{- end -}}
+    if [[ $(is_installed {{ $command }}) -eq 0 ]]; then
+      echo "  Installing {{ $v.name }}"
+      nix-env -iA nixpkgs.{{ $v.name }} &>/dev/null
+    else
+      echo "  {{ $v.name }} is already installed, skipping"
+    fi
+  {{ end }}
 }
 
 main ${@}

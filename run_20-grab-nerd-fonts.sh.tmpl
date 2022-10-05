@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+DIR_PATH=$HOME/.local/share/chezmoi
+
+NERD_FONTS_BASE_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2
+NERD_FONTS=({{range $v := .NERD_FONTS }}{{ $v }} {{ end }})
+FONT_INSTALL_DIR={{ if eq .chezmoi.os "linux" }}"$HOME/.local/share/fonts"{{ else if eq .chezmoi.os "darwin" }}"$HOME/Library/Fonts"{{ end }}
+INSTALLED_FONTS=0
+
+function main {
+  echo "Adding fonts"
+  download_fonts
+  {{ if eq .chezmoi.os "linux" -}}
+  refresh_fonts
+  {{ end -}}
+}
+
+function download_fonts {
+  for FONT in ${NERD_FONTS[@]}; do
+    if [[ ! -d "$FONT_INSTALL_DIR/$FONT" ]]; then
+      if [[ -n "/tmp/$FONT.zip" ]]; then
+        curl -fsSL "$NERD_FONTS_BASE_URL/$FONT.zip" -o "/tmp/$FONT.zip"
+      fi
+      extract_font $FONT
+    fi
+    echo "  $FONT is already installed, skipping"
+  done
+}
+
+function extract_font {
+  FONT_PATH="/tmp/$1.zip"
+  FONT_OUTPUT="$FONT_INSTALL_DIR/$1"
+
+  unzip -qq "$FONT_PATH" -d "$FONT_OUTPUT" &
+  INSTALLED_FONTS=1
+}
+
+function refresh_fonts {
+  if [[ $INSTALLED_FONTS -gt 0 ]]; then
+    fc-cache -f -v
+  fi
+}
+
+main "${@}"

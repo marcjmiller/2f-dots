@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 function main {
-  echo "  Adding common utils"
+  echo "Adding common utils"
 }
 
-function isInstalled {
+function is_installed {
   command -v "$@" | wc -l 
 }
 
