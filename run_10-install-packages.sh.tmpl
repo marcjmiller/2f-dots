@@ -11,6 +11,7 @@ source "$DIR_PATH"/darwin-utils.sh
 {{ end -}}
 
 source "$DIR_PATH"/common-utils.sh
+source "$DIR_PATH"/colors.sh &> /dev/null
 
 function main {
   install_packages
@@ -24,7 +25,7 @@ function main {
 }
 
 function install_packages {
-  echo "Installing packages"
+  bold "Installing packages"
   {{range $v := $packages }}
     {{ $command := "" }}
     {{- if hasKey $v "command" -}}
@@ -36,13 +37,13 @@ function install_packages {
       echo "  Installing {{ $v.name }}"
       install_package {{ $v.name }}
     else
-      echo "  {{ $v.name }} is already installed, skipping"
+      blue "  {{ $v.name }} is already installed, skipping"
     fi
   {{ end }}
 }
 
 function install_nix_packages {
-  echo "Installing nix packages"
+  bold "Installing nix packages"
   {{range $v := .NIX_PACKAGES }}
     {{ $command := "" }}
     {{- if hasKey $v "command" -}}
@@ -51,10 +52,10 @@ function install_nix_packages {
       {{- $command = $v.name -}}
     {{- end -}}
     if [[ $(is_installed {{ $command }}) -eq 0 ]]; then
-      echo "  Installing {{ $v.name }}"
+      green "  Installing {{ $v.name }}"
       nix-env -iA nixpkgs.{{ $v.name }} &>/dev/null
     else
-      echo "  {{ $v.name }} is already installed, skipping"
+      blue "  {{ $v.name }} is already installed, skipping"
     fi
   {{ end }}
 }

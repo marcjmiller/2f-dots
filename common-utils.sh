@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+DIR_PATH=$HOME/.local/share/chezmoi
+source "$DIR_PATH"/colors.sh &> /dev/null
+
 function main {
-  echo "Adding common utils"
+  bold "Adding common utils"
+  echo ""
 }
 
 function is_installed {

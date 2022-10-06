@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-DIR_PATH=$HOME/.local/share/chezmoi
+DIR_PATH="$HOME"/.local/share/chezmoi
+source "$DIR_PATH"/colors.sh &> /dev/null
 
 {{ $nerdFonts := .NERD_FONTS }}
 FONT_INSTALL_DIR={{ if eq .chezmoi.os "linux" }}"$HOME/.local/share/fonts"{{ else if eq .chezmoi.os "darwin" }}"$HOME/Library/Fonts"{{ end }}
@@ -8,7 +9,7 @@ INSTALLED_FONTS=0
 NERD_FONTS_BASE_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2
 
 function main {
-  echo "Adding fonts"
+  bold "Adding fonts"
   download_fonts
   {{ if eq .chezmoi.os "linux" -}}
   refresh_fonts
@@ -28,7 +29,7 @@ function download_fonts {
       fi
       extract_font {{ $font }}
     else
-      echo "  {{ $font }} is already installed, skipping"
+      blue "  {{ $font }} is already installed, skipping"
     fi
   {{ end }}
 }

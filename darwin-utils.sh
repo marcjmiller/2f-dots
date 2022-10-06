@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+DIR_PATH=$HOME/.local/share/chezmoi
+source "$DIR_PATH"/colors.sh
+
 function main {
   echo "Adding darwin utils"
 }
