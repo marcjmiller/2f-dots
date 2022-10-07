@@ -1,4 +1,10 @@
+{{- $email := promptStringOnce .git "email" "Enter your email for Git" -}}
+{{- $name := promptStringOnce .git "name" "Enter your Full Name for Git" -}}
+
 data:
+  git:
+    email: {{ $email | quote }}
+    name: {{ $name | quote }}
   NERD_FONTS: 
     - CascadiaCode
     - FiraCode
@@ -17,11 +23,16 @@ data:
       command: aws
     - name: direnv
     - name: docker
+    - name: fluxcd
+      command: flux
     - name: fzf
     - name: helm
     - name: kail
     - name: kubectl
     - name: kustomize
+    - name: meld
+    - name: neovim
+      command: nvim
     - name: sops
     - name: terraform
     - name: terragrunt
