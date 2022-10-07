@@ -53,7 +53,7 @@ function install_nix_packages {
     {{- end -}}
     if [[ $(is_installed {{ $command }}) -eq 0 ]]; then
       green "  Installing {{ $v.name }}"
-      nix-env -iA nixpkgs.{{ $v.name }} &>/dev/null
+      NIXPKGS_ALLOW_UNFREE=1 nix-env -iA nixpkgs.{{ $v.name }} &>/dev/null
     else
       blue "  {{ $v.name }} is already installed, skipping"
     fi
