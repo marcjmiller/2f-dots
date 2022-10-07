@@ -1,10 +1,14 @@
 {{- $email := promptStringOnce .git "email" "Enter your email for Git" -}}
 {{- $name := promptStringOnce .git "name" "Enter your Full Name for Git" -}}
+{{- $semiConnected := promptBool "Choose a semi-connected terminal font?" -}}
 
 data:
   git:
     email: {{ $email | quote }}
     name: {{ $name | quote }}
+  terminal:
+    kitty:
+      font: {{ if $semiConnected }}{{ "VictorMono NF" | quote }}{{ else }}{{ "FiraCode NF" | quote }}{{ end }}
   NERD_FONTS: 
     - CascadiaCode
     - FiraCode
