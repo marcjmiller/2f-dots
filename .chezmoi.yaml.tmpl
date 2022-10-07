@@ -1,6 +1,6 @@
 {{- $email := promptStringOnce .git "email" "Enter your email for Git" -}}
 {{- $name := promptStringOnce .git "name" "Enter your Full Name for Git" -}}
-{{- $semiConnected := promptBool "Choose a semi-connected terminal font?" -}}
+{{- $semiConnected := promptBoolOnce .terminal.kitty "font" "Choose a semi-connected terminal font?" -}}
 
 data:
   git:
