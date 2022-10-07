@@ -1,0 +1,4 @@
+**/*.zwc
+**/cache
+**/.github
+**/.git
