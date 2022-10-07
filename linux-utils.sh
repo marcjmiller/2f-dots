@@ -5,8 +5,9 @@ source "$DIR_PATH"/colors.sh
 
 function main {
   if [[ ! $SHELL =~ "zsh" ]]; then
-    echo "Setting default shell to $(command -v zsh)"
+    green "Setting default shell to $(command -v zsh)"
     sudo sh -c "chsh -s $(command -v zsh) $(whoami)"
+    bold "May require logout to take effect"
   fi
   bold "Adding linux utils"
 }
