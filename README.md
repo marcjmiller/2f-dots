@@ -8,3 +8,8 @@
 ```
 chezmoi init https://code.il2.gamewarden.io/gamewarden/dotfiles.git
 ```
+
+### Init from a branch ?
+```
+chezmoi init https://code.il2.gamewarden.io/gamewarden/dotfiles.git --branch yourBranchName
+```
